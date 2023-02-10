@@ -1,6 +1,7 @@
 import 'package:dw9_delivery_app/app/core/ui/helpers/size_extensions.dart';
 import 'package:dw9_delivery_app/app/core/ui/widgets/delivery_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -8,6 +9,12 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xff140E0e),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarBrightness: Brightness.dark,
+        ),
+      ),
       body: ColoredBox(
         color: const Color(0xff140E0e),
         child: Stack(
@@ -26,7 +33,7 @@ class SplashPage extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: context.percentHeight(.30),
+                    height: context.percentHeight(.20),
                   ),
                   Image.asset('assets/images/logo.png'),
                   const SizedBox(
