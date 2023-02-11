@@ -107,83 +107,86 @@ class _ProductDetailPageState
             ),
           ),
           const Divider(),
-          Row(
-            children: [
-              Container(
-                width: context.percentWidth(.5),
-                height: 68,
-                padding: const EdgeInsets.all(8),
-                child: BlocBuilder<ProductDetailController, int>(
-                  builder: (context, amount) {
-                    return DeliveryIncrementDecrementButton(
-                        decrementTap: () {
-                          controller.decrement();
-                        },
-                        incrementTap: () {
-                          controller.increment();
-                        },
-                        amount: amount);
-                  },
+          Padding(
+            padding: const EdgeInsets.only(bottom: 15),
+            child: Row(
+              children: [
+                Container(
+                  width: context.percentWidth(.5),
+                  height: 68,
+                  padding: const EdgeInsets.all(8),
+                  child: BlocBuilder<ProductDetailController, int>(
+                    builder: (context, amount) {
+                      return DeliveryIncrementDecrementButton(
+                          decrementTap: () {
+                            controller.decrement();
+                          },
+                          incrementTap: () {
+                            controller.increment();
+                          },
+                          amount: amount);
+                    },
+                  ),
                 ),
-              ),
-              Container(
-                width: context.percentWidth(.5),
-                height: 68,
-                padding: EdgeInsets.all(8),
-                child: BlocBuilder<ProductDetailController, int>(
-                  builder: (context, amount) {
-                    return ElevatedButton(
-                      style: amount == 0
-                          ? ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red)
-                          : null,
-                      onPressed: () {
-                        if (amount == 0) {
-                          _showConfirmDelete(amount);
-                        } else {
-                          Navigator.of(context).pop(
-                            OrderProductDto(
-                              product: widget.product,
-                              amount: amount,
-                            ),
-                          );
-                        }
-                      },
-                      child: Visibility(
-                        visible: amount > 0,
-                        replacement: Text(
-                          'Excluir Produto',
-                          style: context.textStyles.textExtraBold,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Adicionar',
-                              style: context.textStyles.textExtraBold
-                                  .copyWith(fontSize: 13),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: AutoSizeText(
-                                (widget.product.price * amount).currencyPTBR,
-                                maxFontSize: 13,
-                                minFontSize: 5,
-                                maxLines: 1,
-                                textAlign: TextAlign.center,
-                                style: context.textStyles.textExtraBold,
+                Container(
+                  width: context.percentWidth(.5),
+                  height: 68,
+                  padding: EdgeInsets.all(8),
+                  child: BlocBuilder<ProductDetailController, int>(
+                    builder: (context, amount) {
+                      return ElevatedButton(
+                        style: amount == 0
+                            ? ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red)
+                            : null,
+                        onPressed: () {
+                          if (amount == 0) {
+                            _showConfirmDelete(amount);
+                          } else {
+                            Navigator.of(context).pop(
+                              OrderProductDto(
+                                product: widget.product,
+                                amount: amount,
                               ),
-                            )
-                          ],
+                            );
+                          }
+                        },
+                        child: Visibility(
+                          visible: amount > 0,
+                          replacement: Text(
+                            'Excluir Produto',
+                            style: context.textStyles.textExtraBold,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Adicionar',
+                                style: context.textStyles.textExtraBold
+                                    .copyWith(fontSize: 13),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: AutoSizeText(
+                                  (widget.product.price * amount).currencyPTBR,
+                                  maxFontSize: 13,
+                                  minFontSize: 5,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                  style: context.textStyles.textExtraBold,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         ],
       ),
