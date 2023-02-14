@@ -157,7 +157,6 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
                               valid: paymentTypeValidValue,
                               valueSelected: paymentTypeId.toString(),
                             );
-                            ;
                           },
                         );
                       },
