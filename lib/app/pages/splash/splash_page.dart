@@ -13,6 +13,7 @@ class SplashPage extends StatelessWidget {
         backgroundColor: const Color(0xff140E0e),
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarBrightness: Brightness.dark,
+          statusBarIconBrightness: Brightness.light,
         ),
       ),
       body: ColoredBox(
