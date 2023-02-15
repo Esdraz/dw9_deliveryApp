@@ -87,6 +87,18 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
               _showConfirmProductDialog(state);
             }
           },
+          emptyBag: () {
+            showInfo(
+                'Sua sacola está vazia, selecione um produto para realizar o pedido.');
+            Navigator.pop(context, <OrderProductDto>[]);
+          },
+          success: () {
+            hideLoader();
+            Navigator.of(context).popAndPushNamed(
+              '/order/completed',
+              result: <OrderProductDto>[],
+            );
+          },
         );
       },
       child: WillPopScope(
@@ -113,7 +125,7 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
                           style: context.textStyles.textTitle,
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () => controller.emptyBag(),
                           icon: Image.asset('assets/images/trashRegular.png'),
                         ),
                       ],
@@ -237,7 +249,13 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
                                   formKey.currentState?.validate() ?? false;
                               final paymentTypeSelected = paymentTypeId != null;
                               paymentTypeValid.value = paymentTypeSelected;
-                              if (valid) {}
+
+                              if (valid && paymentTypeSelected) {
+                                controller.saveOrder(
+                                    address: addressEC.text,
+                                    document: documentEC.text,
+                                    paymentMethodId: paymentTypeId!);
+                              }
                             }),
                       )
                     ],
