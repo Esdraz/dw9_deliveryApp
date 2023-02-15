@@ -7,14 +7,16 @@ class OrderField extends StatelessWidget {
   final TextEditingController controller;
   final FormFieldValidator validator;
   final String hintText;
+  final TextInputType keyboardType;
 
   const OrderField({
-    super.key,
+    Key? key,
     required this.title,
     required this.controller,
     required this.validator,
     required this.hintText,
-  });
+    required this.keyboardType,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,7 @@ class OrderField extends StatelessWidget {
           TextFormField(
             controller: controller,
             validator: validator,
+            keyboardType: keyboardType,
             decoration: InputDecoration(
               hintText: hintText,
               border: defaultBorder,

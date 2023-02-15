@@ -195,6 +195,7 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
                         validator:
                             Validatorless.required('Endereço obrigatório'),
                         hintText: 'Digite um endereço',
+                        keyboardType: TextInputType.streetAddress,
                       ),
                       const SizedBox(
                         height: 10,
@@ -204,6 +205,7 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
                         controller: documentEC,
                         validator: Validatorless.required('CPF obrigatório'),
                         hintText: 'Digite o CPF',
+                        keyboardType: TextInputType.number,
                       ),
                       const SizedBox(
                         height: 20,
